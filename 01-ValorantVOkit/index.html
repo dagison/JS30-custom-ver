@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VALORANT Agents Voiceover</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="title">
+    <center>
+    <h1>Press the KEY to play sound</h1>
+    </center>
+  </div>
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">breach</span>
+    </div>
+    <div data-key="66" class="key">
+      <kbd>B</kbd>
+      <span class="sound">brimstone</span>
+    </div>
+    <div data-key="67" class="key">
+      <kbd>C</kbd>
+      <span class="sound">cypher</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">jett</span>
+    </div>
+    <div data-key="69" class="key">
+      <kbd>E</kbd>
+      <span class="sound">omen</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">phoenix</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">raze</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">sage</span>
+    </div>
+    <div data-key="73" class="key">
+      <kbd>I</kbd>
+      <span class="sound">sova</span>
+    </div>
+     <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">viper</span>
+    </div>
+  </div>
+  </div>
+
+  <audio data-key="65" src="agents-vo/breach.mp3"></audio>
+  <audio data-key="66" src="agents-vo/brimstone.mp3"></audio>
+  <audio data-key="67" src="agents-vo/cypher.mp3"></audio>
+  <audio data-key="68" src="agents-vo/jett.mp3"></audio>
+  <audio data-key="69" src="agents-vo/omen.mp3"></audio>
+  <audio data-key="70" src="agents-vo/phoenix.mp3"></audio>
+  <audio data-key="71" src="agents-vo/raze.mp3"></audio>
+  <audio data-key="72" src="agents-vo/sage.mp3"></audio>
+  <audio data-key="73" src="agents-vo/sova.mp3"></audio>
+  <audio data-key="74" src="agents-vo/viper.mp3"></audio>
+
+
+ <script type="text/javascript">
+
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+ </script>
+
+</body>
+</html>
